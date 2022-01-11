@@ -4,18 +4,26 @@ import Card from "./components/Card";
 
 function App() {
   const [title, setTitle] = useState("");
-  const [calorie, setCalorie] = useState("");
+  const [date, setDate] = useState("");
   const [cards, setCards] = useState([]);
 
   function handleClick(e) {
     e.preventDefault();
 
-    cards.push({ title, calorie, index: cards.length });
+    console.log(typeof date);
+
+    // let parsedDate = new Date(date);
+
+    // parsedDate = date.toLocaleDateString("en-US", options);
+    setDate(date.toString());
+    console.log(date);
+
+    cards.push({ title, date, index: Date.now() });
 
     setCards(cards);
 
     setTitle("");
-    setCalorie("");
+    setDate("");
   }
 
   function handleDelete(index) {
@@ -44,17 +52,17 @@ function App() {
               required
             />
             <input
-              type="number"
+              type="date"
               name="calorie"
               id="calorie"
               placeholder="Habit Count"
-              value={calorie}
-              onChange={(e) => setCalorie(e.target.value)}
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
               required
             />
           </div>
           <button type="submit" className="submit">
-            ADD ITEM
+            ADD HABIT
           </button>
         </div>
       </form>
@@ -63,7 +71,7 @@ function App() {
           <Card
             key={data.index}
             title={data.title}
-            calorie={data.calorie}
+            date={data.date}
             handleDelete={() => handleDelete(data.index)}
           />
         ))}

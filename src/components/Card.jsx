@@ -4,11 +4,12 @@ import React, { useState } from "react";
 function Card(props) {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(props.title);
-  const [calorie, setCalorie] = useState(props.calorie);
+  const [date, setDate] = useState(props.date);
 
   function validate() {
     setEditing(false);
-    let newCalorie = calorie.replace(/\D/g, "");
+    console.log(date);
+    // let newCalorie = dae.replace(/\D/g, "");
     // setCalorie(newCalorie);
   }
 
@@ -27,13 +28,11 @@ function Card(props) {
         {editing ? (
           <input
             className="newInput"
-            value={calorie}
-            onChange={(e) => setCalorie(e.target.value)}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         ) : (
-          <p className="information">
-            You Have Done This Habit {calorie} Times
-          </p>
+          <p className="information">You Listed This Habit On: {date}</p>
         )}
         <div className="buttons">
           <button className="btn" id="delete" onClick={props.handleDelete}>
